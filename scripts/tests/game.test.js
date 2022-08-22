@@ -3,7 +3,7 @@
  */
 
 // Accessing our game object from game.js.
-const { game, newGame, showScore } = require("../game") ;
+const { game, newGame, showScore, addTurn } = require("../game") ;
 
 
 // This loads our index.html into jests mock DOM, before our tests begin.
@@ -44,7 +44,7 @@ describe("game object contains correct keys", () => {
 // Test for our newGame function.
 describe("newGame works correctly", () => {
     beforeAll(() => {
-        // Assigning game objects keys id's for testing purposes only.
+        // Assigning game object fake key id's for testing purposes only.
         game.score = 42;
         game.playerMoves = ["button1", "button2"];
         game.currentGame = ["button1", "button2"];
@@ -60,8 +60,8 @@ describe("newGame works correctly", () => {
         expect(game.playerMoves.length).toEqual(0);
     });
     // Testing if the newGame function resets the currentGame array.
-    test("should clear the computer sequence array", () => {
-        expect(game.currentGame.length).toEqual(0);
+    test("should be one move in the computer's game array", () => {
+        expect(game.currentGame.length).toEqual(1);
     });
     // Testing if the newGame function displays 0 for element with id of "score".
     test("should display 0 for the element with the id of score", () => {

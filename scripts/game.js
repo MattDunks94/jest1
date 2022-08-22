@@ -10,6 +10,12 @@ function newGame() {
     game.currentGame = [];
     game.playerMoves = [];
     showScore();
+    addTurn();
+};
+
+function addTurn() {
+    game.playerMoves = [];
+    game.currentGame.push(game.choices[(Math.floor(Math.random() * 4))]);
 };
 
 function showScore() {
@@ -24,4 +30,4 @@ function showScore() {
  * Below, exporting 'game' object, newGame(), showScore(). 
  * This enables our game.test.js file access to these bits of code so we can test them.
  */
-module.exports = { game, newGame, showScore };
+module.exports = { game, newGame, showScore, addTurn };
