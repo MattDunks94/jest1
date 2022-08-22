@@ -3,7 +3,7 @@
  */
 
 // Accessing our game object from game.js.
-const { game, newGame, showScore, addTurn, lightsOn } = require("../game") ;
+const { game, newGame, showScore, addTurn, lightsOn, showTurns } = require("../game") ;
 
 
 // This loads our index.html into jests mock DOM, before our tests begin.
@@ -39,9 +39,13 @@ describe("game object contains correct keys", () => {
     test("choices contain correct id's", () => {
         expect(game.choices).toEqual(["button1", "button2", "button3", "button4"]);
     });
+    // Testing if 'turnNumber' exists in game object.
+    test("turnNumber exists", () => {
+        expect("turnNumber" in game).toBe(true);
+    })
 });
 
-// Test for our newGame function.
+// Tests for our newGame function.
 describe("newGame works correctly", () => {
     beforeAll(() => {
         // Assigning game object fake key id's for testing purposes only.
@@ -69,6 +73,7 @@ describe("newGame works correctly", () => {
     });
 });
 
+// Tests for correct gameplay.
 describe("gameplay works correctly", () => {
     beforeEach(() => {
         game.score = 0;
@@ -81,13 +86,20 @@ describe("gameplay works correctly", () => {
         game.currentGame = [];
         game.playerMoves = [];
     });
+    // Testing if addTurn function adds a new turn.
     test("addTurn adds a new turn to the game", () => {
         addTurn();
         expect(game.currentGame.length).toEqual(2);
     });
+    // Testing if the class "light" has been added to an element.
     test("should add correct class to light up the buttons", () => {
         let button = document.getElementById(game.currentGame[0]);
         lightsOn(game.currentGame[0]);
         expect(button.classList).toContain("light");
+    });
+    test("showTurns should update game.turnNumber", () => {
+        game.turnNumber = 42;
+        showTurns();
+        expect(game.turnNumber).toEqual(0);
     });
 });
