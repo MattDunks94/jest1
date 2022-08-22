@@ -3,7 +3,7 @@
  */
 
 // Accessing our game object from game.js.
-const { game, newGame, showScore, addTurn } = require("../game") ;
+const { game, newGame, showScore, addTurn, lightsOn } = require("../game") ;
 
 
 // This loads our index.html into jests mock DOM, before our tests begin.
@@ -66,5 +66,28 @@ describe("newGame works correctly", () => {
     // Testing if the newGame function displays 0 for element with id of "score".
     test("should display 0 for the element with the id of score", () => {
         expect(document.getElementById("score").innerText).toEqual(0);
+    });
+});
+
+describe("gameplay works correctly", () => {
+    beforeEach(() => {
+        game.score = 0;
+        game.currentGame = [];
+        game.playerMoves = [];
+        addTurn();
+    });
+    afterEach(() => {
+        game.score = 0;
+        game.currentGame = [];
+        game.playerMoves = [];
+    });
+    test("addTurn adds a new turn to the game", () => {
+        addTurn();
+        expect(game.currentGame.length).toEqual(2);
+    });
+    test("should add correct class to light up the buttons", () => {
+        let button = document.getElementById(game.currentGame[0]);
+        lightsOn(game.currentGame[0]);
+        expect(button.classList).toContain("light");
     });
 });

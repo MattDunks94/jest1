@@ -22,6 +22,13 @@ function showScore() {
     document.getElementById("score").innerText = game.score;
 };
 
+function lightsOn(circ) {
+    document.getElementById(circ).classList.add("light");
+    setTimeout(() => {
+        document.getElementById(circ).classList.remove("light");
+    }, 400);
+}
+
 /**
  * module.exports:
  * An instruction that tells Node.js, which bits of code 
@@ -30,4 +37,10 @@ function showScore() {
  * Below, exporting 'game' object, newGame(), showScore(). 
  * This enables our game.test.js file access to these bits of code so we can test them.
  */
-module.exports = { game, newGame, showScore, addTurn };
+module.exports = {
+    game,
+    newGame,
+    showScore,
+    addTurn,
+    lightsOn
+};
