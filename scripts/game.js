@@ -13,6 +13,15 @@ function newGame() {
     game.playerMoves = [];
     showScore();
     addTurn();
+    for(let circle of document.getElementsByClassName("circle")) {
+        circle.addEventListener("click", (e) => {
+            let move = e.target.getAttribute("id");
+            lightsOn(move);
+            game.playerMoves.push(move);
+            playerTurn();
+        });
+        circle.setAttribute("data-listener", "true");
+    };
 };
 
 // Adds player turn.
