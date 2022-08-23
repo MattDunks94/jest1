@@ -56,6 +56,20 @@ function showTurns() {
     }, 800);
 };
 
+function playerTurn() {
+    let i = game.playerMoves.length - 1;
+    if(game.currentGame[i] === game.playerMoves[i]) {
+        if(game.currentGame.length == game.playerMoves.length) {
+            game.score ++;
+            showScore();
+            addTurn();
+        };
+    } else {
+        alert("Wrong move!");
+        newGame();
+    };
+};
+
 /**
  * module.exports:
  * An instruction that tells Node.js, which bits of code 
@@ -71,4 +85,5 @@ module.exports = {
     addTurn,
     lightsOn, 
     showTurns,
+    playerTurn
 };
