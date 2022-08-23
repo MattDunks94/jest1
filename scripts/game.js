@@ -56,6 +56,7 @@ function showTurns() {
     }, 800);
 };
 
+// This checks if the player has selected the correct circle.
 function playerTurn() {
     let i = game.playerMoves.length - 1;
     if(game.currentGame[i] === game.playerMoves[i]) {

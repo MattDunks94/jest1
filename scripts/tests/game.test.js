@@ -115,6 +115,7 @@ describe("gameplay works correctly", () => {
         playerTurn();
         expect(game.score).toBe(1);
     });
+    // Testing to see whether an alert has been called when wrong move is made.
     test("should call an alert if the move is wrong", () => {
         game.playerMoves.push("wrong");
         playerTurn();
